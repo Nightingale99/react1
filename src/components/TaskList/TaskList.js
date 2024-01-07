@@ -3,15 +3,17 @@ import React from 'react'
 import Task from '../Task/Task'
 
 
-const TaskList = ( {taskData} ) => {
+const TaskList = ( {taskData, onDeleted, onTaskDone} ) => {
   const elements = taskData.map((item) => {
     return(
-      <Task taskData = {item}/>
+      <Task key = {item.id} taskData = {item}
+       onDeleted = {() => {onDeleted(item.id)}}
+       onTaskDone = {() => {onTaskDone(item.id)}}/>
     )
   });
     return(
-        <section class="main">
-        <ul class="todo-list">
+        <section className="main">
+        <ul className="todo-list">
         {elements}
           
         </ul>
