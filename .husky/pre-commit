@@ -7,4 +7,4 @@ if [ -f ".nvmrc" ]; then
   nvm use
 fi
 
-npm run lint:fix
+npx lint-staged
