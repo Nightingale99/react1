@@ -25,7 +25,7 @@ export default class NewTaskForm extends React.Component {
   };
 
   render() {
-    console.log('жопа');
+    console.log('жоfdпа');
     return (
       <header className="header">
         <h1>todos</h1>
