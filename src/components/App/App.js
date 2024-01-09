@@ -1,7 +1,7 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
 import NewTaskForm from '../NewTaskForm/NewTaskForm';
-import TaskList from '../TaskList/TaskList.jsx';
+import TaskList from '../TaskList/TaskList';
 
 export default class App extends React.Component {
   constructor() {

@@ -1,7 +1,7 @@
 import './TaskList.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Task from '../Task/Task.jsx';
+import Task from '../Task/Task';
 
 function TaskList({ taskData, onDeleted, onTaskDone }) {
   const elements = taskData.map((item) => (

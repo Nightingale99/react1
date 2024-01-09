@@ -66,7 +66,6 @@ export default class Task extends React.Component {
           onChange={(event) => this.taskInputChanged(event.target.value)}
         />
       </li>
-      naem
     );
   }
 }
