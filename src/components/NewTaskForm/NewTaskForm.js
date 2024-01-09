@@ -8,18 +8,20 @@ export default class NewTaskForm extends React.Component {
   };
 
   state = {
-    label: '',
+    value: '',
   };
 
-  taskCreated = (event) => {
-    if (event.key === 'Enter') {
+  inputChanged = (event) => {
+    this.setState({
+      value: event.target.value,
+    });
+  };
+
+  taskCreated = (e) => {
+    if (e.key === 'Enter') {
+      this.props.onChange(this.state.value);
       this.setState({
-        label: '',
-      });
-      this.props.onChange(event);
-    } else {
-      this.setState({
-        label: event.target.key,
+        value: '',
       });
     }
   };
@@ -32,8 +34,11 @@ export default class NewTaskForm extends React.Component {
           className="new-todo"
           placeholder="What needs to be done?"
           autoFocus
-          onKeyDown={this.taskCreated}
+          onChange={this.inputChanged}
           value={this.state.value}
+          onKeyDown={(e) => {
+            this.taskCreated(e);
+          }}
         />
       </header>
     );

@@ -8,14 +8,25 @@ export default class App extends React.Component {
     super();
     this.state = {
       taskData: [],
+      filter: 'all',
     };
   }
 
+  filterChooser = () => {
+    if (this.state.filter === 'all') {
+      this.allSelected();
+    } else if (this.state.filter === 'active') {
+      this.activeSelected();
+    } else {
+      this.completedSelected();
+    }
+  };
+
   taskCreated = (e) => {
-    if (e.target.value.length > 0) {
+    if (e.split(' ').join('').length > 0) {
       this.setState({
         taskData: this.state.taskData.concat({
-          description: e.target.value,
+          description: e,
           created: new Date(),
           id: Math.random().toString(36).slice(2),
           done: false,
@@ -23,6 +34,7 @@ export default class App extends React.Component {
         }),
       });
     }
+    this.filterChooser();
   };
 
   taskDeleted = (id) => {
@@ -43,6 +55,7 @@ export default class App extends React.Component {
         taskData: taskData.toSpliced(idx, 1, taskCopy[idx]),
       };
     });
+    this.filterChooser();
   };
 
   onCompletedClear = () => {
@@ -72,6 +85,7 @@ export default class App extends React.Component {
       });
       return {
         taskData: taskCopy,
+        filter: 'all',
       };
     });
   };
@@ -91,6 +105,7 @@ export default class App extends React.Component {
       });
       return {
         taskData: taskCopy,
+        filter: 'active',
       };
     });
   };
@@ -110,6 +125,7 @@ export default class App extends React.Component {
       });
       return {
         taskData: taskCopy,
+        filter: 'completed',
       };
     });
   };

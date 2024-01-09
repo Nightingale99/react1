@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 export default class Task extends React.Component {
   static propTypes = {
     taskData: PropTypes.shape({
-      created: PropTypes.instanceOf(Date).isRequired,
+      created: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]).isRequired,
       description: PropTypes.string.isRequired,
       done: PropTypes.bool.isRequired,
       hidden: PropTypes.bool.isRequired,
