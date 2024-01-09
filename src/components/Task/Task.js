@@ -34,9 +34,7 @@ export default class Task extends React.Component {
     if (this.state.editing) {
       classNames = 'editing';
     }
-    const {
-      created, description, done, hidden,
-    } = this.props.taskData;
+    const { created, description, done, hidden } = this.props.taskData;
 
     const { onDeleted, onTaskDone } = this.props;
 
@@ -54,7 +52,12 @@ export default class Task extends React.Component {
           <input className="toggle" type="checkbox" onClick={() => onTaskDone()} />
           <label>
             <span className="description">{description}</span>
-            <span className="created">{formatDistanceToNow(created, { addSuffix: true, includeSeconds: true })}</span>
+            <span className="created">
+              {formatDistanceToNow(created, {
+                addSuffix: true,
+                includeSeconds: true,
+              })}
+            </span>
           </label>
           <button type="button" value="Submit" className="icon icon-edit" onClick={() => this.taskEditing()} />
           <button type="button" value=" " className="icon icon-destroy" onClick={onDeleted} />

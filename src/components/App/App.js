@@ -53,11 +53,11 @@ export default class App extends React.Component {
           const idx = taskCopy.findIndex((item) => item.id === task.id);
           taskCopy = taskCopy.toSpliced(idx, 1);
         }
-        return (NaN);
+        return NaN;
       });
-      return ({
+      return {
         taskData: taskCopy,
-      });
+      };
     });
   };
 
@@ -68,11 +68,11 @@ export default class App extends React.Component {
         const idx = taskCopy.findIndex((item) => item.id === task.id);
         taskCopy[idx].hidden = false;
         taskCopy = taskCopy.toSpliced(idx, 1, taskCopy[idx]);
-        return (NaN);
+        return NaN;
       });
-      return ({
+      return {
         taskData: taskCopy,
-      });
+      };
     });
   };
 
@@ -87,11 +87,11 @@ export default class App extends React.Component {
           taskCopy[idx].hidden = true;
         }
         taskCopy = taskCopy.toSpliced(idx, 1, taskCopy[idx]);
-        return (NaN);
+        return NaN;
       });
-      return ({
+      return {
         taskData: taskCopy,
-      });
+      };
     });
   };
 
@@ -106,11 +106,11 @@ export default class App extends React.Component {
           taskCopy[idx].hidden = false;
         }
         taskCopy = taskCopy.toSpliced(idx, 1, taskCopy[idx]);
-        return (NaN);
+        return NaN;
       });
-      return ({
+      return {
         taskData: taskCopy,
-      });
+      };
     });
   };
 
@@ -120,15 +120,27 @@ export default class App extends React.Component {
         <NewTaskForm onChange={this.taskCreated} />
         <TaskList
           taskData={this.state.taskData}
-          onDeleted={(id) => { this.taskDeleted(id); }}
-          onTaskDone={(id) => { this.taskDone(id); }}
+          onDeleted={(id) => {
+            this.taskDeleted(id);
+          }}
+          onTaskDone={(id) => {
+            this.taskDone(id);
+          }}
         />
         <Footer
           taskData={this.state.taskData}
-          onCompletedClear={() => { this.onCompletedClear(); }}
-          allSelected={() => { this.allSelected(); }}
-          activeSelected={() => { this.activeSelected(); }}
-          completedSelected={() => { this.completedSelected(); }}
+          onCompletedClear={() => {
+            this.onCompletedClear();
+          }}
+          allSelected={() => {
+            this.allSelected();
+          }}
+          activeSelected={() => {
+            this.activeSelected();
+          }}
+          completedSelected={() => {
+            this.completedSelected();
+          }}
         />
       </div>
     );

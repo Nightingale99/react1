@@ -50,7 +50,9 @@ export default class Filters extends React.Component {
       <ul className="filters">
         <li>
           <button
-            onClick={() => { this.allSelected(); }}
+            onClick={() => {
+              this.allSelected();
+            }}
             className={allClass}
           >
             All
@@ -58,7 +60,9 @@ export default class Filters extends React.Component {
         </li>
         <li>
           <button
-            onClick={() => { this.activeSelected(); }}
+            onClick={() => {
+              this.activeSelected();
+            }}
             className={activeClass}
           >
             Active
@@ -66,7 +70,9 @@ export default class Filters extends React.Component {
         </li>
         <li>
           <button
-            onClick={() => { this.completedSelected(); }}
+            onClick={() => {
+              this.completedSelected();
+            }}
             className={completedClass}
           >
             Completed
