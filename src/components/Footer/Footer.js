@@ -1,4 +1,5 @@
 import './Footer.css'
+import React from 'react';
 import TasksFilter from '../TasksFilter/TasksFilter'
 
 const Footer = (taskData) =>{

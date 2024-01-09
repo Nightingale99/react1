@@ -1,7 +1,14 @@
 import './TasksFilter.css'
-import React from 'react';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Filters extends React.Component {
+
+    static propTypes = {
+      allSelected: PropTypes.func,
+      activeSelected: PropTypes.func,
+      completedSelected: PropTypes.func,
+    }
 
     state = {
       all: true,
@@ -57,5 +64,6 @@ export default class Filters extends React.Component {
             </ul>
             )
     }
+    
 }
 

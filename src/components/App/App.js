@@ -2,7 +2,6 @@ import React from "react";
 import Footer from "../Footer/Footer"
 import NewTaskForm from "../NewTaskForm/NewTaskForm";
 import TaskList from "../TaskList/TaskList";
-import PropTypes from 'prop-types'; 
 
 
 
@@ -11,8 +10,6 @@ export default class App extends React.Component {
     state = {
         taskData: [],
     }
-
-    static
 
     taskCreated = (e) => {
         if (e.target.value.length > 0){

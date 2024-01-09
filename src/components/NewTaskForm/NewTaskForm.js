@@ -1,7 +1,12 @@
 import React from 'react';
 import './NewTaskForm.css'
+import PropTypes from 'prop-types'
 
 export default class NewTaskForm extends React.Component {
+
+    static propTypes = {
+        onChange: PropTypes.func,
+    }
 
     state = {
         label: '',
@@ -29,6 +34,6 @@ export default class NewTaskForm extends React.Component {
         </header>
     )
     }
-};
+}
 
 

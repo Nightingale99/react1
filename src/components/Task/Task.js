@@ -1,8 +1,20 @@
 import './Task.css'
 import React from 'react';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import PropTypes from 'prop-types'
 
 export default class Task extends React.Component {
+
+    static propTypes = {
+        taskData: PropTypes.shape({
+            created: PropTypes.instanceOf(Date).isRequired,
+            description: PropTypes.string.isRequired,
+            done: PropTypes.bool.isRequired,
+            hidden: PropTypes.bool.isRequired,
+        }),
+        onDeleted: PropTypes.func,
+        onTaskDone: PropTypes.func,
+    }
 
     state = {
         editing: false,
@@ -26,13 +38,17 @@ export default class Task extends React.Component {
             classNames = 'editing';
         }
         const {created, description, done, hidden} = this.props.taskData;
+
         const {onDeleted, onTaskDone} = this.props;
+
         if (done){
             classNames = 'completed';
         }
+
         if (hidden){
             classNames += ' hidden';
         }
+
         return(
             <li className = {classNames}>
                 <div className="view">
