@@ -17,16 +17,19 @@ export default class Task extends React.Component {
 
   state = {
     editing: false,
+    value: this.props.taskData.description,
   };
 
   taskEditing = () => {
     this.setState((state) => ({
       editing: !state.editing,
+      value: this.props.taskData.description,
     }));
   };
 
-  taskInputChanged = (newValue) => {
-    this.props.taskData.description = newValue;
+  // eslint-disable-next-line class-methods-use-this
+  taskInputChanged = (event) => {
+    this.props.taskData.description = event.target.value;
   };
 
   render() {
@@ -65,8 +68,9 @@ export default class Task extends React.Component {
         <input
           type="text"
           className="edit"
+          defaultValue={this.state.value}
           onKeyDown={(e) => (e.key === 'Enter' ? this.taskEditing() : NaN)}
-          onChange={(event) => this.taskInputChanged(event.target.value)}
+          onChange={(event) => this.taskInputChanged(event)}
         />
       </li>
     );

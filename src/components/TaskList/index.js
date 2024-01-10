@@ -1,3 +1,3 @@
-import TaskList from './TaskList';
+import TaskList from './TaskList.jsx';
 
 export default TaskList;

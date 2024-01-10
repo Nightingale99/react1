@@ -1,7 +1,7 @@
 import './Footer.css';
 import React from 'react';
 
-import TasksFilter from '../TasksFilter/TasksFilter';
+import TasksFilter from '../TasksFilter/TasksFilter.jsx';
 
 function Footer(taskData) {
   const { onCompletedClear, allSelected, activeSelected, completedSelected } = taskData;
