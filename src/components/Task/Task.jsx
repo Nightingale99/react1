@@ -1,55 +1,39 @@
 import './Task.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import PropTypes from 'prop-types';
 
-export default class Task extends React.Component {
-  static propTypes = {
-    taskData: PropTypes.shape({
-      created: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]).isRequired,
-      description: PropTypes.string.isRequired,
-      done: PropTypes.bool.isRequired,
-      hidden: PropTypes.bool.isRequired,
-    }),
-    onDeleted: PropTypes.func,
-    onTaskDone: PropTypes.func,
+const Task = ({ taskData, onDeleted, onTaskDone }) => {
+  const [editing, setEditing] = useState(false);
+  const [value, setValue] = useState(taskData.description);
+
+  const taskEditing = () => {
+    setEditing((t) => !t);
+    setValue(taskData.description);
   };
 
-  state = {
-    editing: false,
-    value: this.props.taskData.description,
+  const taskInputChanged = (event) => {
+    // eslint-disable-next-line no-use-before-define, no-const-assign, no-param-reassign
+    taskData.description = event.target.value;
   };
 
-  taskEditing = () => {
-    this.setState((state) => ({
-      editing: !state.editing,
-      value: this.props.taskData.description,
-    }));
-  };
+  let classNames = '';
+  if (editing) {
+    classNames = 'editing';
+  }
+  const {
+    created, done, hidden, description,
+  } = taskData;
 
-  // eslint-disable-next-line class-methods-use-this
-  taskInputChanged = (event) => {
-    this.props.taskData.description = event.target.value;
-  };
+  if (done) {
+    classNames = 'completed';
+  }
 
-  render() {
-    let classNames = '';
-    if (this.state.editing) {
-      classNames = 'editing';
-    }
-    const { created, description, done, hidden } = this.props.taskData;
+  if (hidden) {
+    classNames += ' hidden';
+  }
 
-    const { onDeleted, onTaskDone } = this.props;
-
-    if (done) {
-      classNames = 'completed';
-    }
-
-    if (hidden) {
-      classNames += ' hidden';
-    }
-
-    return (
+  return (
       <li className={classNames}>
         <div className="view">
           <input className="toggle" type="checkbox" onClick={() => onTaskDone()} />
@@ -62,17 +46,29 @@ export default class Task extends React.Component {
               })}
             </span>
           </label>
-          <button type="button" value="Submit" className="icon icon-edit" onClick={() => this.taskEditing()} />
+          <button type="button" value="Submit" className="icon icon-edit" onClick={() => taskEditing()} />
           <button type="button" value=" " className="icon icon-destroy" onClick={onDeleted} />
         </div>
         <input
           type="text"
           className="edit"
-          defaultValue={this.state.value}
-          onKeyDown={(e) => (e.key === 'Enter' ? this.taskEditing() : NaN)}
-          onChange={(event) => this.taskInputChanged(event)}
+          defaultValue={value}
+          onKeyDown={(e) => (e.key === 'Enter' ? taskEditing() : NaN)}
+          onChange={(event) => taskInputChanged(event)}
         />
       </li>
-    );
-  }
-}
+  );
+};
+
+Task.propTypes = {
+  taskData: PropTypes.shape({
+    created: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]).isRequired,
+    description: PropTypes.string.isRequired,
+    done: PropTypes.bool.isRequired,
+    hidden: PropTypes.bool.isRequired,
+  }),
+  onDeleted: PropTypes.func,
+  onTaskDone: PropTypes.func,
+};
+
+export default Task;

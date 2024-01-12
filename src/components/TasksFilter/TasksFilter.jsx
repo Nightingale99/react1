@@ -1,57 +1,50 @@
 import './TasksFilter.css';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export default class Filters extends React.Component {
-  static propTypes = {
-    allSelected: PropTypes.func,
-    activeSelected: PropTypes.func,
-    completedSelected: PropTypes.func,
-  };
-
-  state = {
+const Filters = (props) => {
+  const [filter, setFilter] = useState({
     all: true,
     active: false,
     completed: false,
-  };
+  });
 
-  allSelected = () => {
-    this.setState({
+  const allSelected = () => {
+    setFilter({
       all: true,
       active: false,
       completed: false,
     });
-    this.props.allSelected();
+    props.allSelected();
   };
 
-  activeSelected = () => {
-    this.setState({
+  const activeSelected = () => {
+    setFilter({
       all: false,
       active: true,
       completed: false,
     });
-    this.props.activeSelected();
+    props.activeSelected();
   };
 
-  completedSelected = () => {
-    this.setState({
+  const completedSelected = () => {
+    setFilter({
       all: false,
       active: false,
       completed: true,
     });
-    this.props.completedSelected();
+    props.completedSelected();
   };
 
-  render() {
-    const allClass = this.state.all ? 'selected' : '';
-    const activeClass = this.state.active ? 'selected' : '';
-    const completedClass = this.state.completed ? 'selected' : '';
-    return (
+  const allClass = filter.all ? 'selected' : '';
+  const activeClass = filter.active ? 'selected' : '';
+  const completedClass = filter.completed ? 'selected' : '';
+  return (
       <ul className="filters">
         <li>
           <button
             onClick={() => {
-              this.allSelected();
+              allSelected();
             }}
             className={allClass}
           >
@@ -61,7 +54,7 @@ export default class Filters extends React.Component {
         <li>
           <button
             onClick={() => {
-              this.activeSelected();
+              activeSelected();
             }}
             className={activeClass}
           >
@@ -71,7 +64,7 @@ export default class Filters extends React.Component {
         <li>
           <button
             onClick={() => {
-              this.completedSelected();
+              completedSelected();
             }}
             className={completedClass}
           >
@@ -79,6 +72,13 @@ export default class Filters extends React.Component {
           </button>
         </li>
       </ul>
-    );
-  }
-}
+  );
+};
+
+Filters.propTypes = {
+  allSelected: PropTypes.func,
+  activeSelected: PropTypes.func,
+  completedSelected: PropTypes.func,
+};
+
+export default Filters;
