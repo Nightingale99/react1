@@ -1,2 +1,2 @@
 Project for Kata (Yablonskiy)
-https://kataprojecttodoyablonskiy.vercel.app/
+https://kataprojecttodoyablonskiyhooks.vercel.app
